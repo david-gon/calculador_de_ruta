@@ -45,7 +45,7 @@ Puedes personalizar el desafío agregando obstáculos en cualquier momento:
 ## 🛠️ Instrucciones para Ejecución
 
 1.  Clona este repositorio o descarga los archivos.
-2.  Abre el archivo `index.html` en tu navegador.
+2.  Abre el archivo `main.html` en tu navegador.
 3.  Abre las **Herramientas de Desarrollador** (`F12` o `Ctrl + Shift + I`).
 4.  Selecciona la pestaña **Console (Consola)**.
 5.  ¡Interactúa con la interfaz de la página y observa los cambios en la consola!
