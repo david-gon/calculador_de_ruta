@@ -1,72 +1,72 @@
-🎯 Generador y Calculador de Rutas de Laberintos
-Este proyecto es una aplicación web interactiva que utiliza algoritmos de búsqueda para generar y resolver laberintos. El sistema permite la manipulación de obstáculos en tiempo real, ofreciendo una visualización directa a través de la consola del navegador.
+# 🎯 Generador y Calculador de Rutas de Laberintos
 
-🚀 Características
-Generación Aleatoria: Crea laberintos únicos utilizando el algoritmo DFS (Depth-First Search).
+Este es un proyecto interactivo desarrollado en **JavaScript puro (Vanilla JS)** y **HTML5**. Utiliza algoritmos de búsqueda en grafos para generar laberintos aleatorios y encontrar la ruta más corta entre dos puntos, permitiendo la manipulación dinámica de obstáculos con diferentes prioridades.
 
-Caminos Múltiples: El generador garantiza que no haya una única solución, creando rutas alternativas.
+> **Nota importante:** Los resultados, el renderizado del mapa y la resolución se visualizan directamente en la **Consola del Navegador**.
 
-Buscador de Rutas Inteligente: Implementa el algoritmo BFS (Breadth-First Search) para encontrar la ruta más corta.
+---
 
-Sistema de Prioridades y Obstáculos: * 🌊 Agua: El algoritmo intentará evitarla a menos que sea estrictamente necesario (Baja prioridad).
+## 🚀 Características Principales
 
-🚧 Muros: Bloquean el paso completamente.
+* **Generación Procedural:** Utiliza el algoritmo **DFS (Depth-First Search)** para crear laberintos perfectos.
+* **Caminos Múltiples:** El sistema rompe paredes aleatoriamente para garantizar que existan varias rutas posibles.
+* **Algoritmo de Ruta Óptima:** Implementa **BFS (Breadth-First Search)** para encontrar el camino más corto.
+* **Obstáculos con Lógica de Peso:**
+    * 🌊 **Agua:** El algoritmo le da baja prioridad (trata de evitarla a menos que sea el único camino).
+    * 🚧 **Muro:** Bloquea totalmente el paso.
+* **Interfaz Intuitiva:** Control total mediante formularios y botones.
 
-Visualización en Consola: El laberinto se renderiza con caracteres ASCII y colores ANSI en la consola del desarrollador.
+---
 
-🛠️ Cómo Ejecutar el Proyecto
-Dado que el proyecto utiliza JavaScript puro y HTML, no requiere servidores complejos:
+## 🎮 Guía de Uso e Interacción
 
-Descarga o clona este repositorio.
+Para utilizar la aplicación correctamente, sigue estos pasos en orden:
 
-Abre el archivo index.html en tu navegador favorito (Chrome, Edge o Firefox recomendados).
+### 1. Configuración del Tablero
+* Ingresa el número de **Filas** y **Columnas**.
+* **Regla de Oro:** Los valores deben ser **números impares** (ejemplo: 21x21, 25x15) para que el generador de caminos funcione correctamente. Pueden ser tableros cuadrados o rectangulares.
+* Haz clic en **"Generar Laberinto"**. El laberinto aparecerá en la consola.
 
-Importante: Presiona F12 o clic derecho -> Inspeccionar y ve a la pestaña Consola para ver el laberinto.
+### 2. Definición de Metas y Resolución
+* Ingresa las coordenadas de **Inicio (X, Y)** y **Fin (X, Y)**.
+* Haz clic en **"Encontrar Ruta"**. 
+* El sistema pintará en la consola el recorrido en **color rojo** (`███`).
 
-🎮 Guía de Uso de la Interfaz
-La interfaz está dividida en tres secciones lógicas que deben seguirse en orden para un funcionamiento óptimo:
+### 3. Dinámica de Obstáculos
+Puedes personalizar el desafío agregando obstáculos en cualquier momento:
+1.  Ingresa la posición (X, Y) y selecciona el tipo (Agua o Muro).
+2.  Haz clic en **"Colocar Obstáculo"**.
+3.  **Importante:** Si el laberinto ya estaba resuelto y colocas un nuevo obstáculo, deberás presionar nuevamente el botón **"Encontrar Ruta"** para recalcular el camino evitando o priorizando según el nuevo escenario.
 
-1. Crear el Laberinto
-Filas y Columnas: Ingresa el tamaño deseado.
 
-Nota: Para que el algoritmo de generación funcione correctamente, los números deben ser impares (ej. 21, 21).
 
-Haz clic en "Generar Laberinto". Verás el mapa inicial de paredes (███) y espacios vacíos en la consola.
+---
 
-2. Establecer Metas y Resolver
-Inicio (X, Y): Define la coordenada de partida (por defecto suele ser 1, 1).
+## 🛠️ Instrucciones para Ejecución
 
-Fin (X, Y): Define la coordenada de destino.
+1.  Clona este repositorio o descarga los archivos.
+2.  Abre el archivo `index.html` en tu navegador.
+3.  Abre las **Herramientas de Desarrollador** (`F12` o `Ctrl + Shift + I`).
+4.  Selecciona la pestaña **Console (Consola)**.
+5.  ¡Interactúa con la interfaz de la página y observa los cambios en la consola!
 
-Haz clic en "Encontrar Ruta". El camino óptimo se marcará en la consola con bloques de color rojo.
+---
 
-3. Agregar Obstáculos Dinámicos
-Puedes alterar el laberinto en cualquier momento:
+## 🧠 Detalles Técnicos del Código
 
-Ingresa la Posición X e Y donde deseas colocar un obstáculo.
+### Generación (DFS)
+El código utiliza recursividad para explorar la matriz de 1s (paredes) y convertirlos en 0s (caminos). Al multiplicar el paso por 2, se asegura de dejar muros divisorios consistentes.
 
-Selecciona el tipo:
+### Resolución (BFS con Prioridad)
+Aunque BFS normalmente no maneja pesos, este proyecto implementa una lógica ingeniosa:
+* Si encuentra un **espacio vacío**, se añade al inicio de la cola (`unshift`), dándole prioridad inmediata.
+* Si encuentra **agua**, se añade al final de la cola (`push`), haciendo que el algoritmo explore primero todas las demás opciones antes de decidir cruzar el agua.
+* Si encuentra un **muro**, el nodo se ignora (`continue`).
 
-Agua (🌊): El camino "pesará" más, pero es cruzable.
+---
 
-Muro (🚧): El camino se cerrará ahí.
-
-Haz clic en "Colocar Obstáculo".
-
-⚠️ Nota Importante: Si colocas un obstáculo después de haber resuelto el laberinto, el rastro anterior se limpiará automáticamente. Deberás presionar nuevamente el botón "Encontrar Ruta" para ver cómo el algoritmo se adapta a los nuevos cambios.
-
-🧠 Explicación Técnica
-El núcleo del proyecto reside en dos algoritmos fundamentales:
-
-Generador DFS: Utiliza recursividad y movimientos aleatorios para "tallar" caminos en una cuadrícula llena de paredes. Multiplica los pasos por 2 para mantener la estructura de pasillos y paredes.
-
-Resolutor BFS con Pesos: * Utiliza una Cola (Queue) para explorar los nodos.
-
-Priorización: Cuando el algoritmo encuentra un espacio vacío (" "), lo coloca al inicio de la cola (unshift) para explorarlo de inmediato. Si encuentra agua ("🌊"), lo coloca al final (push), simulando un costo de movimiento mayor.
-
-Reconstrucción: Al llegar a la meta, utiliza una matriz de "padres" para volver desde el final hasta el inicio marcando el camino recorrido.
-
-📋 Requisitos
-Navegador web moderno.
-
-La consola debe tener un ancho suficiente para visualizar laberintos grandes.
+## 🎨 Estilos y UI
+La interfaz cuenta con un diseño moderno usando:
+* Degradados CSS lineales.
+* Efectos de desenfoque (Glassmorphism).
+* Diseño responsivo para móviles y escritorio.
